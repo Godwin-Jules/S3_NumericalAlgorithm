@@ -1,23 +1,23 @@
 # **S3_NumericalAlgorithm**
-This repository regroup all the algorithm, I wrote during my third semester at EPL in Numerical Algorithm subject. I gather them in this repository. These algorithms are writting especially in python
+_This repository regroup all the algorithm, I wrote them during my third semester at EPL in Numerical Algorithm subject. I gather them in this repository. These algorithms are writting especially in python_
 
-## **TABLE OF CONTENTS**
+# **TABLE OF CONTENTS**
 - **[Resolution of type equation f(x) = 0](#resolution-of-type-equation-fx--0)**
 - **[Resolution of type equation AX = B](#resolution-of-type-equation-ax--b)**
 - **[Differential equation](#differential-equation)**
 - **[Interpolation](#interpolation)**
 
-First of all, we will focusing on the first major part the subject.
+_First of all, we will focusing on the first major part the subject._
 
-## **Resolution of type equation f(x) = 0**
+# **Resolution of type equation f(x) = 0**
 
-We have many methods of solving but here, we will deal with four or even five methods of resolution :
+_We have many methods of solving but here, we will deal with four or even five methods of resolution :_
 * **Dichotomy (Bisection) method**
 * **Corde method**
 * **Newton Raphson method**
 * **Substitution (Fixed point) method**
 
-### Dichotomy (Bisection) method
+## Dichotomy (Bisection) method
 * **_The input :_**
 ```
  - the function to verify
@@ -32,7 +32,7 @@ We have many methods of solving but here, we will deal with four or even five me
  - number of iterations
 ```
 
-### **Corde method**
+## **Corde method**
 * **_the input :_**
 ```
  - the function to verify
@@ -49,7 +49,7 @@ We have many methods of solving but here, we will deal with four or even five me
  - the number of iterations
 ```
 
-### **Newton Raphson method**
+## **Newton Raphson method**
 * **_the input :_**
 ```
  - the function to verify
@@ -65,7 +65,7 @@ We have many methods of solving but here, we will deal with four or even five me
  - the number of iterations
 ```
 
-### **Substitution (Fixed point) method**
+## **Substitution (Fixed point) method**
 * **_the input :_**
 ```
  - the function to verify
@@ -81,8 +81,8 @@ We have many methods of solving but here, we will deal with four or even five me
  - the number of iterations
 ```
 
-## **Resolution of type equation AX = B**
+# **Resolution of type equation AX = B**
 
-## **Differential equation**
+# **Differential equation**
 
-## **Interpolation**
+# **Interpolation**
