@@ -10,11 +10,11 @@
 """
 
 def scan( function_verif, left_born, rigth_born):
-    sol_intervals = {}
-    sol_points = {}
+    sol_intervals = []
+    sol_points = []
     step = 0.5
     f = function_verif
-    a = left_born
+    a, b = left_born, left_born
 
     if( f( left_born ) * f( rigth_born ) < 0 ):
         print( "Nombre pair de solution" )
@@ -24,30 +24,35 @@ def scan( function_verif, left_born, rigth_born):
     while( b < rigth_born ):
         b = a + step
         if ( f( a )*f( b ) < 0 ):
-            sol_intervals.pop( {a, b} )
+            sol_intervals.append( [a,b] )
             print( "un intervalle de solution localisé" )
         elif( f( a ) == 0 ):
             sol_points.pop( a )
             print( "une solution exacte trouvée" )
         elif( f( b ) == 0 ):
-            sol_points.pop( b )
-        
+            sol_points.append( b )
         a = b
-    print( "Affichage des résultats de balayage" )
-    if ( sol_intervals.size() == 0 ):
+
+    print( "\nAffichage des résultats de balayage" )
+    if ( len(sol_intervals) == 0 ):
         print( "Pas d'intervalle solution" )
     else:
         print( "Les intervalles solution sont :" )
         i = 1
         for interval in sol_intervals:
-            print( i + " " + interval )
-            ++i
+            print( f"{i} => [{interval[0]}, {interval[1]}]" )
+            i+=1
     
-    if ( sol_points.size() == 0 ):
-        print( "Pas de solution exacte trouvée" )
+    if ( len(sol_points) == 0 ):
+        print( "\nPas de solution exacte trouvée" )
     else:
-        print( "Les solutions exactes trouvées sont :" )
+        print( "\nLes solutions exactes trouvées sont :" )
         i = 1
         for point in sol_points:
-            print( i + " " + point )
-            ++i
+            print( f"{i} => {point}" )
+            i+=1
+
+# def f(x):
+#     return x*x + 7*x - 1.44
+
+# scan(f,-2,2)
