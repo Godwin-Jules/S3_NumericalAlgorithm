@@ -1,6 +1,6 @@
 """
     Author : Jules Dieu donné
-    Date : unknown
+    Date : Tuesday, December 5, 2023
     Motif : equation solving by Scanning (Bissection) method
     Inputs :    - the function to verify
                 - the limits of the interval [a, b]
