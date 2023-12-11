@@ -1,6 +1,20 @@
 from dichotomy import dichotomy
 
+def f(x):
+    return  x*x + 7*x - 1.44
+    
+def df(x):
+    return 2*x + 7
+
+def F(x):
+    return (1/3) * x**3 + (7/2) * x**2 - 1.44 * x
+    
+def g(x):
+    return 0
+
 def main_fx(f, df, F):
+
+    
 
     print( "\n\t------------ [1] RESOLUTION DE f(x) = 0 ------------\n" )
 
@@ -32,3 +46,5 @@ def main_fx(f, df, F):
     print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
     result_dichotomy = dichotomy( f, left_born, rigth_born, precision )
     print( result_dichotomy )
+
+main_fx(f, df, F)
