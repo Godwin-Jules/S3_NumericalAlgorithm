@@ -5,6 +5,7 @@
     Inputs :    - the function to verify
                 - the limits of the interval [a, b]
                 - the precision p (tolerance)
+                - the maximum number of iteration
 
     Outputs :   * the solution interval [a, b]
                 * the x tilde value
