@@ -1,6 +1,6 @@
 """
     Author : Jules Dieu donné
-    Date : Tuesday, December 5, 2023
+    Date : Tuesday, December 12, 2023
     Motif : equation solving by Dichotomy (Bissection) method
     Inputs :    - the function to verify
                 - the limits of the interval [a, b]

@@ -5,8 +5,14 @@
     Inputs : all the information we need to make this project work successfull
     Ouputs : the outputs of the each function
 """
+
+import numpy as np
+
 from fx.dichotomy import dichotomy
 from fx.corde import corde
+from fx.newton import newton
+from fx.scan import scan
+from fx.substitution import substitution
 
 print("\t\t\t+-----------------------------------------+")
 print("\t\t\t|         LES PROGRAMMES DE MTH_300       |")
@@ -26,8 +32,9 @@ while True:
             break
         else:
             print("Veuillez entrer un choix valide")
-    except:
+    except Exception as e:
         print("Veuillez entrer un chiffre")
+        print(e)
 
 if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
 
@@ -67,24 +74,62 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
                     print( "La précision doit être supérieure à 0\nReprenez ;|" )
                 else:
                     break
-        except:
+        except Exception as e:
             print( "Valeur(s) saisie(s) incorrecte(s)\nReprenez ;|" )
+            print(e)
 
-    print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
-    result_dichotomy = dichotomy( f, left_born, rigth_born, precision )
-    print( result_dichotomy )
+    try:
+        print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
 
-    print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
-    result_corde = corde(f, left_born, rigth_born, precision, 10,000,000)
-    print(result_corde)
+        result_dichotomy = dichotomy(f, left_born, rigth_born, precision)
+        print(result_dichotomy)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Dichotomie")
+        print(e)
+
+    try:
+        print("\n\t------------------ (2) : Sécante / Corde ------------------\n")
+
+        result_corde = corde(f, left_born, rigth_born, precision, 1000000)
+        print(result_corde)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Sécante")
+        print(e)
+
+    try:
+        print("\n\t------------------ (3) : Newton ------------------\n")
+
+        result_newton = newton(f, df, left_born, precision, 1000000)
+        print(result_newton)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Newton")
+        print(e)
+    
+    try:
+        print("\n\t------------------ (4) : Balayage ------------------\n")
+
+        result_scan = scan(f, left_born, rigth_born)
+        print(result_scan)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de balayage")
+        print(e)
+
+    try:
+        print("\n\t------------------ (5) : Substitution ------------------\n")
+
+        result_substitution = substitution(f, left_born, precision, 1000000)
+        print(result_substitution)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de substitution")
+        print(e)
+
+elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
+    print("\n\t------------ [2] RESOLUTION DE AX = B ------------\n")
 
 
-# elif ( choix == 2 ):
-#     continue
+elif choix == 3:
+    print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
 
-# elif ( choix == 3 ):
-#     continue
 
-# elif ( choix == 4 ):
-#     continue
-
+elif choix == 4:
+    print("\n\t------------ [4] EQUATION DIFFERENTIELLE ------------\n")

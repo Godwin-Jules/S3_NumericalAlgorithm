@@ -12,14 +12,14 @@
 def scan( function_verif, left_born, rigth_born):
     sol_intervals = []
     sol_points = []
-    step = 0.5
+    step = 0.01
     f = function_verif
     a, b = left_born, left_born
 
     if( f( left_born ) * f( rigth_born ) < 0 ):
-        print( "Nombre pair de solution" )
-    elif( f( left_born ) * f( rigth_born ) > 0 ):
         print( "Nombre impair de solution" )
+    elif( f( left_born ) * f( rigth_born ) > 0 ):
+        print( "Nombre pair de solution" )
     
     while( b < rigth_born ):
         b = a + step
@@ -40,7 +40,7 @@ def scan( function_verif, left_born, rigth_born):
         print( "Les intervalles solution sont :" )
         i = 1
         for interval in sol_intervals:
-            print( f"{i} => [{interval[0]}, {interval[1]}]" )
+            print( f"{i} => [{interval[0]}, {interval[1]}] donc xn+1 = {(interval[0] + interval[1])/2} " )
             i+=1
     
     if ( len(sol_points) == 0 ):
