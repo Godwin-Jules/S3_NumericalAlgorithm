@@ -6,23 +6,130 @@
     Ouputs : the outputs of the each function
 """
 
-print( "\t\t\t+-----------------------------------------+" )
-print( "\t\t\t|         LES PROGRAMMES DE MTH_300       |" )
-print( "\t\t\t+-----------------------------------------+\n" )
+import numpy as np
 
-print( "\t\t_________________________ MENU _________________________\n" )
-print( "\t[1] : RESOLUTION DE F(x) = 0" )
-print( "\t[2] : RESOLUTION DE AX = B" )
-print( "\t[3] : INTERPOLATION LINEAIRE" )
-print( "\t[4] : EQUATION DIFFERENTIELLE\n" )
+from fx.dichotomy import dichotomy
+from fx.corde import corde
+from fx.newton import newton
+from fx.scan import scan
+from fx.substitution import substitution
+
+print("\t\t\t+-----------------------------------------+")
+print("\t\t\t|         LES PROGRAMMES DE MTH_300       |")
+print("\t\t\t+-----------------------------------------+\n")
+
+print("\t\t_________________________ MENU _________________________\n")
+print("\t[1] : RESOLUTION DE F(x) = 0")
+print("\t[2] : RESOLUTION DE AX = B")
+print("\t[3] : INTERPOLATION LINEAIRE")
+print("\t[4] : EQUATION DIFFERENTIELLE\n")
 
 while True:
     try:
-        choix = input( "Votre choix : " )
-        choix = int( choix )
-        if ( 1 <= choix & choix <= 4 ):
+        choix = input("Votre choix : ")
+        choix = int(choix)
+        if (1 <= choix & choix <= 4):
             break
         else:
-            print( "Veuillez entrer un choix valide" )
-    except:
-        print( "Veuillez entrer un chiffre" )
+            print("Veuillez entrer un choix valide")
+    except Exception as e:
+        print("Veuillez entrer un chiffre")
+        print(e)
+
+if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
+
+    def f(x):
+        return  x*x + 7*x - 1.44
+    
+    def df(x):
+        return 2*x + 7
+
+    def F(x):
+        return (1/3) * x**3 + (7/2) * x**2 - 1.44 * x
+    
+    def g(x):
+        return 0
+
+    print( "\n\t------------ [1] RESOLUTION DE f(x) = 0 ------------\n" )
+
+    while True:
+        print( "Veuillez saisir des informations nécessaires" )
+
+        left_born = input( "Valeur de la borne à gauche de l'intervalle : " )
+        rigth_born = input( "Valeur de la borne à droite de l'intervalle : " )
+        precision = input( "Valeur de la tolérance : " )
+        begin_value = input( "Première valeur de x : " )
+
+        try:
+            left_born = float( left_born )
+            rigth_born = float( rigth_born )
+            precision = float( precision )
+            begin_value = float( begin_value )
+
+            if rigth_born <= left_born:
+                print( "Veuillez réssayer, valeur à droite inferieure ou égale à celle à gauche\nReprenez ;|" )
+                continue
+            else:
+                if precision <= 0:
+                    print( "La précision doit être supérieure à 0\nReprenez ;|" )
+                else:
+                    break
+        except Exception as e:
+            print( "Valeur(s) saisie(s) incorrecte(s)\nReprenez ;|" )
+            print(e)
+
+    try:
+        print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
+
+        result_dichotomy = dichotomy(f, left_born, rigth_born, precision)
+        print(result_dichotomy)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Dichotomie")
+        print(e)
+
+    try:
+        print("\n\t------------------ (2) : Sécante / Corde ------------------\n")
+
+        result_corde = corde(f, left_born, rigth_born, precision, 1000000)
+        print(result_corde)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Sécante")
+        print(e)
+
+    try:
+        print("\n\t------------------ (3) : Newton ------------------\n")
+
+        result_newton = newton(f, df, left_born, precision, 1000000)
+        print(result_newton)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de Newton")
+        print(e)
+    
+    try:
+        print("\n\t------------------ (4) : Balayage ------------------\n")
+
+        result_scan = scan(f, left_born, rigth_born)
+        print(result_scan)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de balayage")
+        print(e)
+
+    try:
+        print("\n\t------------------ (5) : Substitution ------------------\n")
+
+        result_substitution = substitution(f, left_born, precision, 1000000)
+        print(result_substitution)
+    except Exception as e:
+        print("Erreur lors de l'exécution de la méthode de substitution")
+        print(e)
+
+elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
+    print("\n\t------------ [2] RESOLUTION DE AX = B ------------\n")
+
+
+elif choix == 3:
+    print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
+
+
+elif choix == 4:
+    print("\n\t------------ [4] EQUATION DIFFERENTIELLE ------------\n")

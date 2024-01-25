@@ -1,10 +1,11 @@
 """
     Author : Jules Dieu donné
-    Date : unknown
+    Date : Tuesday, December 5, 2023
     Motif : equation solving by Dichotomy (Bissection) method
     Inputs :    - the function to verify
                 - the limits of the interval [a, b]
                 - the precision p (tolerance)
+                - the maximum number of iteration
 
     Outputs :   * the solution interval [a, b]
                 * the x tilde value
