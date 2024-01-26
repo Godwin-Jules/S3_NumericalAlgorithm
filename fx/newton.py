@@ -26,7 +26,7 @@ def newton(function_verif, function_derivative, begin_value, precision, max_iter
         nbre_it += 1
         if f_der(x) == 0:
             print("Erreur mathématique fatale :(")
-            exit()
+            return "Pas de convergence"
         x_new = x - f(x) / f_der(x)
         error = abs(x_new - x)
         if error < tol:

@@ -12,6 +12,24 @@
                 * number of iterations
 """
 
+# def verifier(function_verif, left_born, rigth_born, precision):
+    
+#     f = function_verif
+#     a, b = left_born, left_born
+#     nb_solution = 0
+#     amplitude = abs(rigth_born - left_born)
+#     pas = amplitude/10
+
+#     while b < rigth_born:
+#         b = a + pas
+#         if(f(a)*f(b) < 0):
+#             nb_solution += 1
+#             if (nb_solution == 1):
+#                 print(dichotomy(f, a, b, precision))
+#     if(nb_solution > 1):
+#         print(f"\nAu total {nb_solution} solutions")
+
+
 def dichotomy(function_verif, left_born, rigth_born, precision):
     f = function_verif
     a = left_born
@@ -19,19 +37,22 @@ def dichotomy(function_verif, left_born, rigth_born, precision):
     p = precision
     nbre_it = 0
 
-    while ( abs( b - a ) > p ):
-        nbre_it += 1
-        middle = ( a + b )/2
-        if ( f( middle )*f( b ) < 0):
-            a = middle
-        elif ( f( middle ) == 0 ):
-            print( f"{a} est solution de l'équation")
-            middle += p
-        elif ( f( b ) == 0 ):
-            print( f"{b} est solution de l'équation")
-            b -= p
-        else:
-            b = middle
+    if f(a)*f(b) > 0:
+        return "Pas de solution dans cet intervalle"
+    else:
+        while ( abs( b - a ) > p ):
+            nbre_it += 1
+            middle = ( a + b )/2
+            if ( f( middle )*f( b ) < 0):
+                a = middle
+            elif ( f( middle ) == 0 ):
+                print( f"{a} est solution de l'équation")
+                middle += p
+            elif ( f( b ) == 0 ):
+                print( f"{b} est solution de l'équation")
+                b -= p
+            else:
+                b = middle
     return f"\nRESULTATS :\n\t[a,b] = [{a}, {b}]\n\tX_tilde = {(a+b)/2} à {p} près\n\tNombre d'itérations : {nbre_it}\nMéthode de Dichotomie terminée"
 
 # def f(x):
