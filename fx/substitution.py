@@ -14,9 +14,13 @@
 
 import math
 
-def substitution(f, x_0, tol, n_max):
-    x = x_0
+def substitution(function_verif, born_left, precision, max_iteration):
+    f = function_verif
+    x = born_left
+    tol = precision
+    n_max = max_iteration
     nbre_it = 0
+
     while nbre_it < n_max:
         nbre_it += 1
         x_new = f(x)

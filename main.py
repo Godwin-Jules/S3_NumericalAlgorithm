@@ -8,10 +8,10 @@
 
 import numpy as np
 
-from fx.dichotomy import dichotomy
+from fx.dichotomy import *
 from fx.corde import corde
 from fx.newton import newton
-from fx.scan import scan
+# from fx.scan import scan
 from fx.substitution import substitution
 
 print("\t\t\t+-----------------------------------------+")
@@ -67,13 +67,11 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         left_born = input( "Valeur de la borne à gauche de l'intervalle : " )
         rigth_born = input( "Valeur de la borne à droite de l'intervalle : " )
         precision = input( "Valeur de la tolérance : " )
-        begin_value = input( "Première valeur de x : " )
 
         try:
             left_born = float( left_born )
             rigth_born = float( rigth_born )
             precision = float( precision )
-            begin_value = float( begin_value )
 
             if rigth_born <= left_born:
                 print( "Veuillez réssayer, valeur à droite inferieure ou égale à celle à gauche\nReprenez ;|" )
@@ -93,22 +91,10 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         # def verifier(function_verif, left_born, rigth_born, precision):
             
         # f = function_verif
-        a, b = left_born, left_born
-        nb_solution = 0
-        amplitude = abs(rigth_born - left_born)
-        pas = amplitude/10
         
-        while b < rigth_born:
-            b = a + pas
-            if(f(a)*f(b) < 0):
-                nb_solution += 1
-                if (nb_solution == 1):
-                    print(dichotomy(f, a, b, precision))
-        if(nb_solution > 1):
-            print(f"\nAu total {nb_solution} solutions")
 
-            # result_dichotomy = verifier(f, left_born, rigth_born, precision)
-            # print(result_dichotomy)
+        result_dichotomy = dichoComplete(f, left_born, rigth_born, precision)
+        print(result_dichotomy)
 
     except Exception as e:
         print("Erreur lors de l'exécution de la méthode de Dichotomie")
@@ -130,6 +116,7 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
     except Exception as e:
         print(e)
     
+    """
     try:
         print("\n\t------------------ (4) : Balayage ------------------\n")
 
@@ -137,9 +124,10 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         print(result_scan)
     except Exception as e:
         print(e)
+    """
 
     try:
-        print("\n\t------------------ (5) : Substitution ------------------\n")
+        print("\n\t------------------ (4) : Substitution ------------------\n")
 
         result_substitution = substitution(f, left_born, precision, 1000000)
         print(result_substitution)

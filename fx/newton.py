@@ -14,14 +14,14 @@
 
 import math
 
-def newton(function_verif, function_derivative, begin_value, precision, max_iteration):
+def newton(function_verif, function_derivative, born_left, precision, max_iteration):
     f = function_verif
     f_der = function_derivative
-    x_0 = begin_value
+    x = born_left
     tol = precision
     n_max = max_iteration
-    x = x_0
     nbre_it = 0
+
     while nbre_it < n_max:
         nbre_it += 1
         if f_der(x) == 0:

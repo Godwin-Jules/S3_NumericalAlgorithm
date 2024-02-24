@@ -14,8 +14,14 @@
 
 import math
 
-def corde(f,x0,x1,p,N):
+def corde(function_verif, left_born, right_born , precision, max_iteration):
+    f = function_verif
+    x0 = left_born
+    x1 = right_born
+    p = precision
+    N = max_iteration
     nbre_it = 0
+    
     if f(x1) == 0 or f(x0) == 0 or f(x1) - f(x0) == 0:
         print("Erreur mathématique : division par zéro :(")
         return "Pas de convergence"

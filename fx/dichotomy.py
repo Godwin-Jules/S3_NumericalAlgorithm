@@ -29,6 +29,28 @@
 #     if(nb_solution > 1):
 #         print(f"\nAu total {nb_solution} solutions")
 
+def dichoComplete(f, left_born, right_born, precision):
+    a, b = left_born, left_born
+    nb_solution = 0
+    amplitude = abs(right_born - left_born)
+    pas = (amplitude / 5)
+    
+    while b < right_born:
+        b = a + pas
+        if f(a) * f(b) <= 0:
+            nb_solution += 1
+            dichoResult = dichotomy(f, a, b, precision)
+            print(dichoResult)
+            a = b
+        else:
+            a = b
+            continue
+
+    if nb_solution >= 1:
+        return f"\nAu total {nb_solution} solution(s)"
+    else:
+        return f"\nPas de solution avec la méthode de dichotomie !"
+
 
 def dichotomy(function_verif, left_born, rigth_born, precision):
     f = function_verif
