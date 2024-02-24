@@ -27,32 +27,42 @@ def scan( function_verif, left_born, rigth_born):
             sol_intervals.append( [a,b] )
             print( "un intervalle de solution localisé" )
         elif( f( a ) == 0 ):
-            sol_points.pop( a )
+            sol_points.append( a )
             print( "une solution exacte trouvée" )
         elif( f( b ) == 0 ):
             sol_points.append( b )
         a = b
 
-    print( "\nAffichage des résultats de balayage" )
-    if ( len(sol_intervals) == 0 ):
-        print( "Pas d'intervalle solution" )
-    else:
-        print( "Les intervalles solution sont :" )
+    #   Affichage des résultats de balayage
+        
+    if (len(sol_intervals) == 0 & len(sol_points) == 0):
+        print("Pas de solution dans cet intervalle")
+    elif (len(sol_points) > 0 & len(sol_intervals) == 0):
+        print( "\nLes solutions exactes trouvées sont :" )
+        i = 1
+        for point in sol_points:
+            print( f"{i} => {point}" )
+            i+=1
+    elif (len(sol_intervals) > 0 & len(sol_points) == 0):
+        print( "\nLes intervalles solution sont :" )
         i = 1
         for interval in sol_intervals:
             print( f"{i} => [{interval[0]}, {interval[1]}] donc xn+1 = {(interval[0] + interval[1])/2} " )
             i+=1
-    
-    if ( len(sol_points) == 0 ):
-        print( "\nPas de solution exacte trouvée" )
-    else:
+    elif (len(sol_points) > 0 & len(sol_intervals) > 0):
         print( "\nLes solutions exactes trouvées sont :" )
         i = 1
         for point in sol_points:
             print( f"{i} => {point}" )
             i+=1
 
-# def f(x):
-#     return x*x + 7*x - 1.44
+        print( "\nLes intervalles solution sont :" )
+        j = 1
+        for interval in sol_intervals:
+            print( f"{j} => [{interval[0]}, {interval[1]}] donc xn+1 = {(interval[0] + interval[1])/2} " )
+            j+=1
 
-# scan(f,-2,2)
+def f(x):
+    return x*x + 7*x - 1.44
+
+scan(f,-2,2)

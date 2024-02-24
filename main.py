@@ -38,17 +38,26 @@ while True:
 
 if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
 
-    def f(x):
-        return  x*x + 7*x - 1.44
+    # def f(x):
+    #     return  x*x + 7*x - 1.44
     
-    def df(x):
-        return 2*x + 7
+    # def df(x):
+    #     return 2*x + 7
 
-    def F(x):
-        return (1/3) * x**3 + (7/2) * x**2 - 1.44 * x
+    # def F(x):
+    #     return (1/3) * x**3 + (7/2) * x**2 - 1.44 * x
     
-    def g(x):
-        return 0
+    # def g(x):
+    #     return 0
+
+    def f(x):
+        return x*x + x + 1
+
+    def df(x):
+        return 2*x + 1
+    
+    def F(x):
+        return (1/3)*x**3 + (1/2)*x*x + x
 
     print( "\n\t------------ [1] RESOLUTION DE f(x) = 0 ------------\n" )
 
@@ -81,8 +90,26 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
     try:
         print( "\n\t------------------ (1) : Dichotomie / Bissection ------------------\n" )
 
-        result_dichotomy = dichotomy(f, left_born, rigth_born, precision)
-        print(result_dichotomy)
+        # def verifier(function_verif, left_born, rigth_born, precision):
+            
+        # f = function_verif
+        a, b = left_born, left_born
+        nb_solution = 0
+        amplitude = abs(rigth_born - left_born)
+        pas = amplitude/10
+        
+        while b < rigth_born:
+            b = a + pas
+            if(f(a)*f(b) < 0):
+                nb_solution += 1
+                if (nb_solution == 1):
+                    print(dichotomy(f, a, b, precision))
+        if(nb_solution > 1):
+            print(f"\nAu total {nb_solution} solutions")
+
+            # result_dichotomy = verifier(f, left_born, rigth_born, precision)
+            # print(result_dichotomy)
+
     except Exception as e:
         print("Erreur lors de l'exécution de la méthode de Dichotomie")
         print(e)
@@ -93,7 +120,6 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         result_corde = corde(f, left_born, rigth_born, precision, 1000000)
         print(result_corde)
     except Exception as e:
-        print("Erreur lors de l'exécution de la méthode de Sécante")
         print(e)
 
     try:
@@ -102,7 +128,6 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         result_newton = newton(f, df, left_born, precision, 1000000)
         print(result_newton)
     except Exception as e:
-        print("Erreur lors de l'exécution de la méthode de Newton")
         print(e)
     
     try:
@@ -111,7 +136,6 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         result_scan = scan(f, left_born, rigth_born)
         print(result_scan)
     except Exception as e:
-        print("Erreur lors de l'exécution de la méthode de balayage")
         print(e)
 
     try:
@@ -120,7 +144,6 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         result_substitution = substitution(f, left_born, precision, 1000000)
         print(result_substitution)
     except Exception as e:
-        print("Erreur lors de l'exécution de la méthode de substitution")
         print(e)
 
 elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
@@ -130,6 +153,17 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 elif choix == 3:
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
 
+    print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
+
+    print("\n\t------------------ (2) : Méthode des Moindres carrés ------------------\n")
+
+    print("\n\t------------------ (3) : Méthode Newton ------------------\n")
 
 elif choix == 4:
     print("\n\t------------ [4] EQUATION DIFFERENTIELLE ------------\n")
+
+    print("\n\t------------------ (1) : Méthode de Runge-Kutta ------------------\n")
+
+    print("\n\t------------------ (2) : Méthode d'Euler ------------------\n")
+
+    print("\n\t------------------ (3) : Méthode de  ------------------\n")
