@@ -14,6 +14,9 @@ from fx.newton import newton
 from fx.substitution import substitution
 
 from ax.crout import crout
+from ax.doolittle import doolittle
+from ax.gauss import gauss
+from ax.cholevsky import cholevsky
 
 print("\t\t\t+-----------------------------------------+")
 print("\t\t\t|         LES PROGRAMMES DE MTH_300       |")
@@ -145,6 +148,20 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
         [1, 2, -1, -2],
         [2, 1, -1, -1]])
     b = np.array([20, 14, 3, 9])
+
+    # A = np.array([[4, -1, 1],
+    #             [-1, 5, 3],
+    #             [1, 3, 5]])
+    # b = np.array([7, 3, 8])
+    # A = np.array([[2, 1, -1],
+    #             [3, 3, -5],
+    #             [4, 5, -2]])
+    # b = np.array([8, -11, -3])
+
+    # A = np.array([[2, 1, -4],
+    #             [-3, -1, 2],
+    #             [-2, 1, 2]])
+    # b = np.array([8, 4, 16])
     
     print(f"La matrice saisie est :\n", A)
     print(f"\nLe vecteur b saisie est :\n", b)
@@ -162,11 +179,15 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
             try:
                 print("\n\t------------------ (2) : Décomposition avec Doolittle ------------------\n")
+                result_doolitte = doolittle(A, b)
+                print(result_doolitte)
             except Exception as e:
                 print(e)
 
             try:
                 print("\n\t------------------ (3) : Méthode du pivot de Gauss ------------------\n")
+                result_gauss = gauss(A, b)
+                print(result_gauss)
             except Exception as e:
                 print(e)
 
@@ -185,10 +206,23 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
             except Exception as e:
                 print(e)
 
-            try:
-                print("\n\t------------------ (7) : Méthode de Cholevsky ------------------\n")
-            except Exception as e:
-                print(e)
+            print("\n\t------------------ (7) : Méthode de Cholevsky ------------------\n")
+            est_symetrique = np.allclose(A, A.T)
+            est_positive = all(np.linalg.det(A[:i, :i]) > 0 for i in range(1, A.shape[0] + 1))
+
+            if  not (est_symetrique and est_positive):
+                print("La matrice A n'est ni symétrique, ni définie positive")
+            elif not est_positive:
+                print("La matrice A n'est pas définie positive")
+            elif not est_symetrique:
+                print("La matrice A n'est pas symétrique")
+            else:
+                try:
+                    result_cholevsky = cholevsky(A, b)
+                    print(result_cholevsky)
+                except Exception as e:
+                    print("La matrice n'est pas définie positive")
+                    print(e)
 
             try:
                 print("\n\t------------------ (8) : Méthode de  ------------------\n")
@@ -224,5 +258,10 @@ elif choix == 4:    # LES EQUATIONS DIFFERENTIELLES
 
     try:
         print("\n\t------------------ (2) : Méthode d'Euler ------------------\n")
+    except Exception as e:
+        print(e)
+
+    try:
+        print("\n\t------------------ (3) : Méthode de Cauchy-Lipscitz ------------------\n")
     except Exception as e:
         print(e)
