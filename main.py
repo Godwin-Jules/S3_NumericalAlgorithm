@@ -224,10 +224,6 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
                     print("La matrice n'est pas définie positive")
                     print(e)
 
-            try:
-                print("\n\t------------------ (8) : Méthode de  ------------------\n")
-            except Exception as e:
-                print(e)
 
 elif choix == 3:    # LES INTERPOLATIONS
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
