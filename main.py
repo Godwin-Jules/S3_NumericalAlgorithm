@@ -8,11 +8,12 @@
 
 import numpy as np
 
-from fx.dichotomy import *
+from fx.dichotomy import dichoComplete
 from fx.corde import corde
 from fx.newton import newton
-# from fx.scan import scan
 from fx.substitution import substitution
+
+from ax.crout import crout
 
 print("\t\t\t+-----------------------------------------+")
 print("\t\t\t|         LES PROGRAMMES DE MTH_300       |")
@@ -137,21 +138,91 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
 elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
     print("\n\t------------ [2] RESOLUTION DE AX = B ------------\n")
 
+    # La matrice et le vecteur
+    A = np.array([
+        [4, -2, -3, 1],
+        [1, 3, 1, 3],
+        [1, 2, -1, -2],
+        [2, 1, -1, -1]])
+    b = np.array([20, 14, 3, 9])
+    
+    print(f"La matrice saisie est :\n", A)
+    print(f"\nLe vecteur b saisie est :\n", b)
 
-elif choix == 3:
+    if A.shape[0] != A.shape[1]:
+        print("La matrice saisie n'est pas carrée")
+    else:
+        if A.shape[0] == b.shape[0]:
+            try:
+                print("\n\t------------------ (1) : Décomposition avec Crout ------------------\n")
+                result_crout = crout(A, b)
+                print(result_crout)
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (2) : Décomposition avec Doolittle ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (3) : Méthode du pivot de Gauss ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (4) : Méthode de Gauss Seidel ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (6) : Méthode de Jacobi ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (7) : Méthode de Cholevsky ------------------\n")
+            except Exception as e:
+                print(e)
+
+            try:
+                print("\n\t------------------ (8) : Méthode de  ------------------\n")
+            except Exception as e:
+                print(e)
+
+elif choix == 3:    # LES INTERPOLATIONS
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
 
-    print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
+    try:
+        print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
+    except Exception as e:
+        print(e)
 
-    print("\n\t------------------ (2) : Méthode des Moindres carrés ------------------\n")
+    try:
+        print("\n\t------------------ (2) : Méthode des Moindres carrés ------------------\n")
+    except Exception as e:
+        print(e)
 
-    print("\n\t------------------ (3) : Méthode Newton ------------------\n")
+    try:
+        print("\n\t------------------ (3) : Méthode Newton ------------------\n")
+    except Exception as e:
+        print(e)
 
-elif choix == 4:
+
+elif choix == 4:    # LES EQUATIONS DIFFERENTIELLES
     print("\n\t------------ [4] EQUATION DIFFERENTIELLE ------------\n")
 
-    print("\n\t------------------ (1) : Méthode de Runge-Kutta ------------------\n")
+    try:
+        print("\n\t------------------ (1) : Méthode de Runge-Kutta ------------------\n")
+    except Exception as e:
+        print(e)
 
-    print("\n\t------------------ (2) : Méthode d'Euler ------------------\n")
-
-    print("\n\t------------------ (3) : Méthode de  ------------------\n")
+    try:
+        print("\n\t------------------ (2) : Méthode d'Euler ------------------\n")
+    except Exception as e:
+        print(e)
