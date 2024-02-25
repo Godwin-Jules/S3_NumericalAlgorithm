@@ -75,7 +75,7 @@ def dichotomy(function_verif, left_born, rigth_born, precision):
                 b -= p
             else:
                 b = middle
-    return f"\nRESULTATS :\n\t[a,b] = [{a}, {b}]\n\tX_tilde = {(a+b)/2} à {p} près\n\tNombre d'itérations : {nbre_it}\nMéthode de Dichotomie terminée"
+    return f"\nRESULTATS :\n\t[a,b] = [{a}, {b}]\n\tX_tilde = {(a+b)/2}\n\tNombre d'itérations : {nbre_it}\nMéthode de Dichotomie terminée"
 
 # def f(x):
 #     return x*x + 7*x - 1.44
