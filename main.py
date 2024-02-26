@@ -13,10 +13,13 @@ from fx.corde import corde
 from fx.newton import newton
 from fx.substitution import substitution
 
+from ax.diag_dominante import diag_dominante
 from ax.crout import crout
 from ax.doolittle import doolittle
 from ax.gauss import gauss
-from ax.gauss_jordan import gauss_jordan, Gauss_jordan
+from ax.gauss_seidel import gauss_seidel
+from ax.gauss_jordan import gauss_jordan
+from ax.jacobi import jacobi
 from ax.cholevsky import cholevsky
 
 print("\t\t\t+-----------------------------------------+")
@@ -176,6 +179,10 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
     #             [-2, 1, 2]])
     # b = np.array([8, 4, 16])
     
+    x = np.array([0,0,0,0])
+
+    est_diagonale_d = diag_dominante(A)
+
     print(f"La matrice saisie est :\n", A)
     print(f"\nLe vecteur b saisie est :\n", b)
 
@@ -206,18 +213,25 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
             try:
                 print("\n\t------------------ (4) : Méthode de Gauss Seidel ------------------\n")
+                result_seidel = gauss_seidel(A, b)
+                print(result_seidel)
             except Exception as e:
                 print(e)
 
             try:
                 print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
-                result_jordan = Gauss_jordan(A, b)
+                result_jordan = gauss_jordan(A, b)
                 print(result_jordan)
             except Exception as e:
                 print(e)
 
             try:
                 print("\n\t------------------ (6) : Méthode de Jacobi ------------------\n")
+                if not est_diagonale_d:
+                    print("La matrice A n'est pas diagonale dominante")
+                else:
+                    result_jacobi = jacobi(A,b,x,45)
+                    print(result_jacobi)
             except Exception as e:
                 print(e)
 
