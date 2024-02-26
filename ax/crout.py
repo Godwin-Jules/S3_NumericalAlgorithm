@@ -11,8 +11,8 @@ import numpy as np
 from scipy.linalg import lu, lu_factor, lu_solve
 
 def crout(matrice, vector):
-    A = matrice
-    b = vector
+    A = np.array(matrice, float)
+    b = np.array(vector, float)
     p, L, U = lu(A)
     print(f"\nLa matrice L est :\n{L}")
     print(f"\nLa matrice U est :\n{U}")

@@ -16,6 +16,7 @@ from fx.substitution import substitution
 from ax.crout import crout
 from ax.doolittle import doolittle
 from ax.gauss import gauss
+from ax.gauss_jordan import gauss_jordan, Gauss_jordan
 from ax.cholevsky import cholevsky
 
 print("\t\t\t+-----------------------------------------+")
@@ -96,7 +97,6 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
             
         # f = function_verif
         
-
         result_dichotomy = dichoComplete(f, left_born, rigth_born, precision)
         print(result_dichotomy)
 
@@ -142,17 +142,30 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
     print("\n\t------------ [2] RESOLUTION DE AX = B ------------\n")
 
     # La matrice et le vecteur
-    A = np.array([
-        [4, -2, -3, 1],
-        [1, 3, 1, 3],
-        [1, 2, -1, -2],
-        [2, 1, -1, -1]])
-    b = np.array([20, 14, 3, 9])
+
+    A = np.array([[0, 2, 0, 1],
+                  [2, 2, 3, 2],
+                  [4, -3, 0, 1],
+                  [6, 1, -6, -5]], float)
+    b = np.array([0, -2, -7, 6], float)
+
+    # A = np.array([[2, 1, -4],
+    #             [4, 2, -1],
+    #             [4, 5, -2]], float)
+    # b = np.array([8, 4, 16], float)
+
+    # A = np.array([
+    #     [4, -2, -3, 1],
+    #     [1, 3, 1, 3],
+    #     [1, 2, -1, -2],
+    #     [2, 1, -1, -1]], float)
+    # b = np.array([20, 14, 3, 9], float)
 
     # A = np.array([[4, -1, 1],
     #             [-1, 5, 3],
     #             [1, 3, 5]])
     # b = np.array([7, 3, 8])
+
     # A = np.array([[2, 1, -1],
     #             [3, 3, -5],
     #             [4, 5, -2]])
@@ -198,6 +211,8 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
             try:
                 print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
+                result_jordan = Gauss_jordan(A, b)
+                print(result_jordan)
             except Exception as e:
                 print(e)
 
@@ -210,7 +225,7 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
             est_symetrique = np.allclose(A, A.T)
             est_positive = all(np.linalg.det(A[:i, :i]) > 0 for i in range(1, A.shape[0] + 1))
 
-            if  not (est_symetrique and est_positive):
+            if  not est_symetrique and not est_positive:
                 print("La matrice A n'est ni symétrique, ni définie positive")
             elif not est_positive:
                 print("La matrice A n'est pas définie positive")

@@ -11,9 +11,9 @@ import numpy as np
 from scipy.linalg import cholesky, cho_factor, cho_solve
 
 def cholevsky(matrice, vector):
-    A = matrice
-    b = vector
-    m_triangle = cholesky(A)
+    A = np.array(matrice, float)
+    b = np.array(vector, float)
+    m_triangle = cholesky(A, lower=True)
     print(f"La matrice triangulaire de Cholevsky est :\n{m_triangle}")
     Cho, piv = cho_factor(A)
     x = cho_solve((Cho, piv), b)
