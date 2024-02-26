@@ -213,7 +213,7 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
             try:
                 print("\n\t------------------ (4) : Méthode de Gauss Seidel ------------------\n")
-                result_seidel = gauss_seidel(A, b)
+                result_seidel = gauss_seidel(A, b, x, 12)
                 print(result_seidel)
             except Exception as e:
                 print(e)

@@ -23,9 +23,9 @@ def gauss_seidel(matrice, vector, begin_matrice, max_iteration):
         x = np.dot(np.linalg.inv(D-E), np.dot(F,x) + b)
     return f"\nAprès {nbre_it} itérations, la solution est :\n{x}\n"
 
-A = np.array([[4,3,3],
-              [3,4,3],
-              [3,3,4]])
-b = np.array([10,10,10])
-x = np.array([0,0,0])
-print(gauss_seidel(A,b,x,10))
+# A = np.array([[4,3,3],
+#               [3,4,3],
+#               [3,3,4]])
+# b = np.array([10,10,10])
+# x = np.array([0,0,0])
+# print(gauss_seidel(A,b,x,10))
