@@ -22,6 +22,8 @@ from ax.gauss_jordan import gauss_jordan
 from ax.jacobi import jacobi
 from ax.cholevsky import cholevsky
 
+from interpolation.lagrange import lagrange_interpolate
+
 print("\t\t\t+-----------------------------------------+")
 print("\t\t\t|         LES PROGRAMMES DE MTH_300       |")
 print("\t\t\t+-----------------------------------------+\n")
@@ -257,8 +259,11 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 elif choix == 3:    # LES INTERPOLATIONS
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
 
+
     try:
         print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
+        result_lagrange = lagrange_interpolate(X,Y)
+        print(result_lagrange)
     except Exception as e:
         print(e)
 
