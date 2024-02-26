@@ -14,6 +14,6 @@ def lagrange_interpolate(X, Y):
 
 # X = [0,1,2]
 # Y = [-2,0,3]
-X = [-2,-1,0,1]
-Y = [-7,4,1,2]
-print(lagrange_interpolate(X,Y))
+# X = [-2,-1,0,1]
+# Y = [-7,4,1,2]
+# print(lagrange_interpolate(X,Y))

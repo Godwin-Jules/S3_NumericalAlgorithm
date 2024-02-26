@@ -182,7 +182,8 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
     # b = np.array([8, 4, 16])
     
     x = np.array([0,0,0,0])
-
+    est_symetrique = np.allclose(A, A.T)
+    est_positive = all(np.linalg.det(A[:i, :i]) > 0 for i in range(1, A.shape[0] + 1))
     est_diagonale_d = diag_dominante(A)
 
     print(f"La matrice saisie est :\n", A)
@@ -192,43 +193,43 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
         print("La matrice saisie n'est pas carrée")
     else:
         if A.shape[0] == b.shape[0]:
+            print("\n\t------------------ (1) : Décomposition avec Crout ------------------\n")
             try:
-                print("\n\t------------------ (1) : Décomposition avec Crout ------------------\n")
                 result_crout = crout(A, b)
                 print(result_crout)
             except Exception as e:
                 print(e)
 
+            print("\n\t------------------ (2) : Décomposition avec Doolittle ------------------\n")
             try:
-                print("\n\t------------------ (2) : Décomposition avec Doolittle ------------------\n")
                 result_doolitte = doolittle(A, b)
                 print(result_doolitte)
             except Exception as e:
                 print(e)
 
-            try:
                 print("\n\t------------------ (3) : Méthode du pivot de Gauss ------------------\n")
+            try:
                 result_gauss = gauss(A, b)
                 print(result_gauss)
             except Exception as e:
                 print(e)
 
+            print("\n\t------------------ (4) : Méthode de Gauss Seidel ------------------\n")
             try:
-                print("\n\t------------------ (4) : Méthode de Gauss Seidel ------------------\n")
                 result_seidel = gauss_seidel(A, b, x, 12)
                 print(result_seidel)
             except Exception as e:
                 print(e)
 
-            try:
                 print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
+            try:
                 result_jordan = gauss_jordan(A, b)
                 print(result_jordan)
             except Exception as e:
                 print(e)
 
+            print("\n\t------------------ (6) : Méthode de Jacobi ------------------\n")
             try:
-                print("\n\t------------------ (6) : Méthode de Jacobi ------------------\n")
                 if not est_diagonale_d:
                     print("La matrice A n'est pas diagonale dominante")
                 else:
@@ -238,8 +239,6 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
                 print(e)
 
             print("\n\t------------------ (7) : Méthode de Cholevsky ------------------\n")
-            est_symetrique = np.allclose(A, A.T)
-            est_positive = all(np.linalg.det(A[:i, :i]) > 0 for i in range(1, A.shape[0] + 1))
 
             if  not est_symetrique and not est_positive:
                 print("La matrice A n'est ni symétrique, ni définie positive")
@@ -258,10 +257,14 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
 elif choix == 3:    # LES INTERPOLATIONS
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
-
-
+    X = []
+    Y = []
+    # X = [0,1,2]
+    # Y = [-2,0,3]
+    X = [-2,-1,0,1]
+    Y = [-7,4,1,2]
+    print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
     try:
-        print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
         result_lagrange = lagrange_interpolate(X,Y)
         print(result_lagrange)
     except Exception as e:
