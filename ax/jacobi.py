@@ -21,8 +21,7 @@ def jacobi(matrice, vector, begin_matrice, max_iteration):
     while nbre_it < N:
         nbre_it += 1
         x = np.dot(np.linalg.inv(D), np.dot(E+F,x) + b)
-        print(x)
-    return f"\n\nAprès {nbre_it} itérations, la solution est :\n{x}\n"
+    return f"\nAprès {nbre_it} itérations, la solution est :\n{x}\n"
 
 # A = np.array([[4,3,3],
 #               [3,4,3],

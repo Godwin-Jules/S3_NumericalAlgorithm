@@ -16,7 +16,7 @@ def cholevsky(matrice, vector):
     # m_triangle = cholesky(A, lower=True)
     # print(f"La matrice triangulaire de Cholevsky est :\n{m_triangle}")
     Cho, piv = cho_factor(A)
-    x = cho_solve((Cho, piv), b)
+    x = cho_solve(cho_factor(A), b)
     return f"\nLa solution est :\n{x}\n"
 
 # A = np.array([[4, -1, 1],

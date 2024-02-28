@@ -35,7 +35,7 @@ def gauss_jordan(A, b):
             for j in range(k,n):
                 A[i,j] -= factor * A[k,j]
             b[i] -= factor * b[k]
-    return f"\n\nLa solution est :\n{b}\n"
+    return f"\nLa solution est :\n{b}\n"
 
 
 # A = np.array([[0, 2, 0, 1],

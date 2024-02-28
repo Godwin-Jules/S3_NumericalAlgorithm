@@ -14,8 +14,8 @@ def crout(matrice, vector):
     A = np.array(matrice, float)
     b = np.array(vector, float)
     p, L, U = lu(A)
-    print(f"\nLa matrice L est :\n{L}")
-    print(f"\nLa matrice U est :\n{U}")
+    # print(f"\nLa matrice L est :\n{L}")
+    # print(f"\nLa matrice U est :\n{U}")
     LU, piv = lu_factor(A)
     x = lu_solve((LU, piv), b)
-    return f"\n\nLa solution est :\n{x}\n"
+    return f"\nLa solution est :\n{x}\n"

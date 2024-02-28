@@ -36,7 +36,7 @@ def gauss(matrice, vector):
         #Echélonnement
         for k in np.arange(i+1, n):
             M[k,:] = M[k,:] - M[k,i] / M[i,i] * M[i,:]     # La formule de calul est : A(k, :) = A(k, :) /A(i, i) * A(i, :)
-    print(f"Après échélonnement, la matrice augmentée devient :\n{M}")
+    # print(f"Après échélonnement, la matrice augmentée devient :\n{M}")
     
     # La remontée
     x[n-1] = M[n-1, n] / M[n-1, n-1]

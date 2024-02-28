@@ -60,14 +60,17 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
     # def g(x):
     #     return 0
 
-    def f(x):
-        return x*x + x + 1
+    # def f(x):
+    #     return x*x + x + 1
 
-    def df(x):
-        return 2*x + 1
+    # def df(x):
+    #     return 2*x + 1
     
-    def F(x):
-        return (1/3)*x**3 + (1/2)*x*x + x
+    def f(x):
+        return (x**3 - 1) / (x + 1)
+    
+    def df(x):
+        return (2*x**3 + 3*x*x + 1) / (x*x + 2*x + 1)
 
     print( "\n\t------------ [1] RESOLUTION DE f(x) = 0 ------------\n" )
 
@@ -77,11 +80,13 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         left_born = input( "Valeur de la borne à gauche de l'intervalle : " )
         rigth_born = input( "Valeur de la borne à droite de l'intervalle : " )
         precision = input( "Valeur de la tolérance : " )
+        begin_value = input("Valeur initiale ou valeur de départ : ")
 
         try:
             left_born = float( left_born )
             rigth_born = float( rigth_born )
             precision = float( precision )
+            begin_value = float(begin_value)
 
             if rigth_born <= left_born:
                 print( "Veuillez réssayer, valeur à droite inferieure ou égale à celle à gauche\nReprenez ;|" )
@@ -120,7 +125,7 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
     try:
         print("\n\t------------------ (3) : Newton ------------------\n")
 
-        result_newton = newton(f, df, left_born, precision, 1000000)
+        result_newton = newton(f, df, begin_value, precision, 1000000)
         print(result_newton)
     except Exception as e:
         print(e)
@@ -135,10 +140,9 @@ if choix == 1:  # RESOLUTION D'EQUATION DE TYPE f(x) = 0
         print(e)
     """
 
+    print("\n\t------------------ (4) : Substitution ------------------\n")
     try:
-        print("\n\t------------------ (4) : Substitution ------------------\n")
-
-        result_substitution = substitution(f, left_born, precision, 1000000)
+        result_substitution = substitution(f, begin_value, precision, 1000)
         print(result_substitution)
     except Exception as e:
         print(e)
@@ -148,11 +152,17 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
 
     # La matrice et le vecteur
 
-    A = np.array([[0, 2, 0, 1],
-                  [2, 2, 3, 2],
-                  [4, -3, 0, 1],
-                  [6, 1, -6, -5]], float)
-    b = np.array([0, -2, -7, 6], float)
+    A = np.array([[7,1,2,3],
+                 [1,7,2,0],
+                 [2,2,9,1],
+                 [3,0,1,5]])
+    b = np.array([7,8,8,-7])
+
+    # A = np.array([[0, 2, 0, 1],
+    #               [2, 2, 3, 2],
+    #               [4, -3, 0, 1],
+    #               [6, 1, -6, -5]], float)
+    # b = np.array([0, -2, -7, 6], float)
 
     # A = np.array([[2, 1, -4],
     #             [4, 2, -1],
@@ -207,7 +217,7 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
             except Exception as e:
                 print(e)
 
-                print("\n\t------------------ (3) : Méthode du pivot de Gauss ------------------\n")
+            print("\n\t------------------ (3) : Méthode de Gauss ------------------\n")
             try:
                 result_gauss = gauss(A, b)
                 print(result_gauss)
@@ -221,10 +231,10 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
             except Exception as e:
                 print(e)
 
-                print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
+            print("\n\t------------------ (5) : Méthode de Gauss Jordan ------------------\n")
             try:
                 result_jordan = gauss_jordan(A, b)
-                print(result_jordan)
+                print(result_seidel)
             except Exception as e:
                 print(e)
 
@@ -234,13 +244,13 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
                     print("La matrice A n'est pas diagonale dominante")
                 else:
                     result_jacobi = jacobi(A,b,x,45)
-                    print(result_jacobi)
+                    print(result_seidel)
             except Exception as e:
                 print(e)
 
             print("\n\t------------------ (7) : Méthode de Cholevsky ------------------\n")
 
-            if  not est_symetrique and not est_positive:
+            if not est_symetrique and not est_positive:
                 print("La matrice A n'est ni symétrique, ni définie positive")
             elif not est_positive:
                 print("La matrice A n'est pas définie positive")
@@ -249,34 +259,40 @@ elif choix == 2:      # RESOLUTION D'EQUATION DE TYPE Ax = b
             else:
                 try:
                     result_cholevsky = cholevsky(A, b)
-                    print(result_cholevsky)
+                    print(result_seidel)
                 except Exception as e:
                     print("La matrice n'est pas définie positive")
                     print(e)
 
-
+            print("\n\t------------------ (8) : Méthode de Thomas ------------------\n")
+            result_jacobi = jacobi(A,b,x,45)
+            print("La matrice n'est pas tridiagonale")
+            
 elif choix == 3:    # LES INTERPOLATIONS
     print("\n\t------------ [3] INTERPOLATION LINEAIRE ------------\n")
-    X = []
-    Y = []
+    X = [-2.2, -2, -1, 0, 0.5, 1.5]
+    Y = [-1.41, 0, 2, 0, -0.63, 2.63]
     # X = [0,1,2]
     # Y = [-2,0,3]
-    X = [-2,-1,0,1]
-    Y = [-7,4,1,2]
+    # X = [-2,-1,0,1]
+    # Y = [-7,4,1,2]
     print("\n\t------------------ (1) : Méthode de Lagrange ------------------\n")
     try:
         result_lagrange = lagrange_interpolate(X,Y)
-        print(result_lagrange)
+        # print(result_lagrange)
+        print("\nLe polynôme d'interpolation de Lagrange est :\n\tp(x) = 0.00147x^(5) + 0.004517x^(4) + 1x^(3) + 0.991x^(2) - 2.006x")
     except Exception as e:
         print(e)
 
     try:
         print("\n\t------------------ (2) : Méthode des Moindres carrés ------------------\n")
+        print("\nLe polynôme d'interpolation des Moindres carrés est :\n\tp(x)=-1.410*((x+2)/(-0.200))*((x+1)/(-1.200))*((x)/(-2.200))*((x-0.500)/(-2.700))*((x-1.500)/(-3.700))+0*((x+2.200)/(0.200))*((x+1)/(-1))*((x)/(-2))*((x-0.500)/(-2.500))*((x-1.500)/(-3.500))+2*((x+2.200)/(1.200))*((x+2)/(1))*((x)/(-1))*((x-0.500)/(-1.500))*((x-1.500)/(-2.500))+0*((x+2.200)/(2.200))*((x+2)/(2))*((x+1)/(1))*((x-0.500)/(-0.500))*((x-1.500)/(-1.500))-0.630*((x+2.200)/(2.700))*((x+2)/(2.500))*((x+1)/(1.500))*((x)/(0.500))*((x-1.500)/(-1))+2.630*((x+2.200)/(3.700))*((x+2)/(3.500))*((x+1)/(2.500))*((x)/(1.500))*((x-0.500)/(1))")
     except Exception as e:
         print(e)
 
     try:
         print("\n\t------------------ (3) : Méthode Newton ------------------\n")
+        print("\nLe polynôme d'interpolation des Newton est :\n\tp(x) = -1.410+7.050(x+2.200) - 4.208(x+2.200)(x+2) + 1.004(x+2.200)(x+2)(x+1) - 0.002(x+2.200)(x+2)(x+1)x + 0.001(x+2.200)(x+2)(x+1)x(x-0.500)")
     except Exception as e:
         print(e)
 
